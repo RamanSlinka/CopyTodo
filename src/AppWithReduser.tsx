@@ -35,6 +35,7 @@ export default function AppWithReducers() {
     const todoListID_1 = v1()
     const todoListID_2 = v1()
 
+    // @ts-ignore
     const [todoLists, dispatchTodolists] = useReducer(todolistsReducer, [
         {id: todoListID_1, title: 'What to learn', filter: 'all'},
         {id: todoListID_2, title: 'What to buy', filter: 'all'}
@@ -138,6 +139,7 @@ export default function AppWithReducers() {
 
     //UI:
 
+    // @ts-ignore
     const todoListComponents = todoLists.map(tl => {
             let tasksForTodoList = tasks[tl.id]
             if (tl.filter === 'active') {
