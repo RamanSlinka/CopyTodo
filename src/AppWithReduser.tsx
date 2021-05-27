@@ -1,5 +1,4 @@
 import React, {useReducer, useState} from 'react';
-import {TaskType, TodoList} from "./TodoList";
 import {v1} from 'uuid';
 import {AddItemForm} from "./AddItemForm";
 import {AppBar, Button, IconButton, Toolbar,
@@ -9,12 +8,13 @@ import {Menu} from '@material-ui/icons';
 import {tasksReducer, removeTaskAC,
     addTaskAC, changeTaskStatusAC, changeTaskTitleAC} from "./state/task-reducer";
 import {
-    AddTodolistAC,
-    ChangeTodolistFilterAC,
-    ChangeTodolistTitleAC,
-    RemoveTodolistAC, todolistsReducer,
-
+    addTodolistAC,
+    changeTodolistFilterAC,
+    changeTodolistTitleAC,
+    removeTodolistAC,
+    todolistsReducer
 } from "./state/todolists-reducer";
+import {TaskType, Todolist} from "./Todolist";
 
 
 export type FilerValuesType = 'all' | 'active' | 'completed';
@@ -104,7 +104,7 @@ export default function AppWithReducers() {
              todoList.filter = newFilterValue
              setTodoLists([...todoLists])
          }*/
-        let action = ChangeTodolistFilterAC(todoListID, newFilterValue )
+        let action = changeTodolistFilterAC(todoListID, newFilterValue )
         dispatchTodolists(action)
     }
 
@@ -114,14 +114,14 @@ export default function AppWithReducers() {
             todoList.title = newTitle
             setTodoLists([...todoLists])
         }*/
-        let action = ChangeTodolistTitleAC(newTitle, todoListID)
+        let action = changeTodolistTitleAC(newTitle, todoListID)
         dispatchTodolists(action)
     }
 
     function removeTodolist(todoListID: string) {
         /* setTodoLists(todoLists.filter(tl => tl.id !== todoListID))
          delete tasks[todoListID]*/
-        let action = RemoveTodolistAC(todoListID)
+        let action = removeTodolistAC(todoListID)
         dispatchTodolists(action)
         dispatchTasks(action)
     }
@@ -131,7 +131,7 @@ export default function AppWithReducers() {
          const newTodoList: TodolistType = {id: newTodoListID, title: title, filter: 'all'}
          setTodoLists([...todoLists, newTodoList])
          setTasks({...tasks, [newTodoListID]: []})*/
-        let action = AddTodolistAC(title)
+        let action = addTodolistAC(title)
         dispatchTodolists(action)
         dispatchTasks(action)
     }
@@ -151,7 +151,7 @@ export default function AppWithReducers() {
             return (
                 <Grid item key={tl.id}>
                     <Paper elevation={10} style={{padding: '20px'}}>
-                        <TodoList
+                        <Todolist
                             id={tl.id}
                             title={tl.title}
                             filter={tl.filter}
