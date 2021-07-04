@@ -158,7 +158,6 @@ export const fetchTasksTC = (todoId: string) => {
 }
 
 export const removeTaskTC = (todoId: string, taskId: string) => (dispatch: Dispatch) => {
-
     todolistsAPI.deleteTask(todoId, taskId)
         .then((res) => {
             dispatch(removeTaskAC(taskId, todoId))
@@ -174,11 +173,10 @@ export const addTaskTC = (todoId: string, title: string) => (dispatch: Dispatch)
 }
 
 
-
 export const updateTaskStatusTC = (taskId: string, todoId: string, status: TaskStatuses) => {
     return (dispatch: Dispatch, getState: () => AppRootStateType) => {
 
-        debugger
+
         const state = getState();
         const allTasks = state.tasks
         const allTasksForClickedTodo = allTasks[todoId]
@@ -199,9 +197,38 @@ export const updateTaskStatusTC = (taskId: string, todoId: string, status: TaskS
 
             todolistsAPI.updateTask(todoId, taskId, model)
                 .then((res) => {
-                dispatch(changeTaskStatusAC(taskId, status, todoId))
-            })
+                    dispatch(changeTaskStatusAC(taskId, status, todoId))
+                })
         }
     }
 }
+
+export const changeTaskTitleTC = (todolistId: string, taskId: string, title: string) => (dispatch: Dispatch, getState: () => AppRootStateType) => {
+
+    const state = getState();
+    const allTasks = state.tasks
+    const allTasksForClickedTodo = allTasks[todolistId]
+    const clickedTask = allTasksForClickedTodo.find((t) => {
+        return t.id === taskId
+    })
+
+
+    if (clickedTask) {
+        const model: UpdateTaskModelType = {
+            status: clickedTask.status,
+            title: title,
+            startDate: clickedTask.startDate,
+            priority: clickedTask.priority,
+            description: clickedTask.description,
+            deadline: clickedTask.deadline
+        }
+
+
+        todolistsAPI.updateTask(todolistId, taskId, model)
+            .then((res) => {
+                dispatch(changeTaskTitleAC(taskId, title, todolistId))
+            })
+    }
+}
+
 
