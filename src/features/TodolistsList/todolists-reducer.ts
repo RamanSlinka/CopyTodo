@@ -7,6 +7,7 @@ import {
     setAppStatusAC,
     setAppStatusActionType
 } from "../../app/app-reducer";
+import {AxiosError} from "axios";
 
 const initialState: Array<TodolistDomainType> = []
 
@@ -100,6 +101,13 @@ export const addTodolistTC = (title: string) => {
 
                 }
             })
+            .catch((err: AxiosError) => {
+                dispatch(setAppErrorAC(err.message))
+                dispatch(setAppStatusAC('failed'))
+            })
+            .finally(() => {
+                console.log('hello everyone!')
+            })
     }
 }
 export const changeTodolistTitleTC = (id: string, title: string) => {
@@ -108,6 +116,7 @@ export const changeTodolistTitleTC = (id: string, title: string) => {
             .then((res) => {
                 dispatch(changeTodolistTitleAC(id, title))
             })
+
     }
 }
 
