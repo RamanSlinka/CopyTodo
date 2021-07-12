@@ -65,13 +65,13 @@ export const fetchTodolistsTC = () => {
 export const removeTodolistTC = (todolistId: string) => {
     return (dispatch: Dispatch<ActionsType>) => {
         dispatch(setAppStatusAC('loading'))
-        dispatch(changeTodolistEntityStatusAC(todolistId,'loading'))
+        dispatch(changeTodolistEntityStatusAC(todolistId, 'loading'))
         todolistsAPI.deleteTodolist(todolistId)
             .then((res) => {
                 if (res.data.resultCode === 0) {
                     dispatch(removeTodolistAC(todolistId))
                     dispatch(setAppStatusAC('succeeded'))
-                }  else {
+                } else {
                     if (res.data.messages.length) {
                         dispatch(setAppErrorAC(res.data.messages[0]))
                     } else {
@@ -90,22 +90,23 @@ export const addTodolistTC = (title: string) => {
                 if (res.data.resultCode === 0) {
 
                     dispatch(addTodolistAC(res.data.data.item))
-                    dispatch(setAppStatusAC('succeeded'))
+
                 } else {
                     if (res.data.messages.length) {
                         dispatch(setAppErrorAC(res.data.messages[0]))
                     } else {
                         dispatch(setAppErrorAC('Some error occurred'))
                     }
-                    dispatch(setAppStatusAC('failed'))
+
 
                 }
             })
             .catch((err: AxiosError) => {
                 dispatch(setAppErrorAC(err.message))
-                dispatch(setAppStatusAC('failed'))
+
             })
             .finally(() => {
+                dispatch(setAppStatusAC('failed'))
                 console.log('hello everyone!')
             })
     }
