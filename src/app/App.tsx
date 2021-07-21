@@ -3,17 +3,20 @@ import './App.css'
 import {AppBar, Button, Container, IconButton, LinearProgress, Toolbar, Typography} from '@material-ui/core'
 import {Menu} from '@material-ui/icons'
 import {TodolistsList} from '../features/TodolistsList/TodolistsList'
-import {useSelector} from "react-redux";
-import {AppRootStateType} from "./store";
-import {RequestStatusType} from "./app-reducer";
-import {ErrorSnackbar} from "../components/ErrorSnackbar/ErrorSnackbar";
+import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar'
+import {useSelector} from 'react-redux'
+import {AppRootStateType} from './store'
+import {RequestStatusType} from './app-reducer'
 
-function App() {
+type PropsType = {
+    demo?: boolean
+}
 
-    const status = useSelector<AppRootStateType, RequestStatusType>((state) =>  state.app.status)
-
+function App({demo = false}: PropsType) {
+    const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
     return (
         <div className="App">
+            <ErrorSnackbar />
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
@@ -24,15 +27,11 @@ function App() {
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
+             { status === 'loading' &&  <LinearProgress /> }
             </AppBar>
-
-            {status === 'loading' &&  <LinearProgress color="secondary" />}
-
             <Container fixed>
-                <TodolistsList/>
+                <TodolistsList demo={demo}/>
             </Container>
-
-            <ErrorSnackbar/>
         </div>
     )
 }
