@@ -9,6 +9,8 @@ import {AppRootStateType} from './store'
 import {initializeAppTC, RequestStatusType} from './app-reducer'
 import {Redirect, Route, Switch} from 'react-router-dom'
 import {Login} from '../features/Login/Login'
+import CircularProgress from '@material-ui/core/CircularProgress'
+import {logoutTC} from "../features/Login/auth-reducer";
 
 type PropsType = {
     demo?: boolean
@@ -16,11 +18,27 @@ type PropsType = {
 
 function App({demo = false}: PropsType) {
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
+    const isInitialized = useSelector<AppRootStateType, boolean>((state) => state.app.isInitialized)
+    const isLoggetIn = useSelector<AppRootStateType, boolean>((state) => state.auth.isLoggedIn)
+
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(initializeAppTC())
     }, [])
+
+    const logoutHandler = () => {
+        dispatch(logoutTC())
+    }
+
+    if (!isInitialized) {
+        return <div
+            style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+            <CircularProgress/>
+        </div>
+    }
+
 
     return (
         <div className="App">
@@ -33,7 +51,11 @@ function App({demo = false}: PropsType) {
                     <Typography variant="h6">
                         News
                     </Typography>
-                    <Button color="inherit">Login</Button>
+
+                    {isLoggetIn && <Button color="inherit"  onClick={logoutHandler}>Logout</Button> }
+
+
+
                 </Toolbar>
                 {status === 'loading' && <LinearProgress/>}
             </AppBar>

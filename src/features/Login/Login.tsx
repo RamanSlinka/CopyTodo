@@ -72,6 +72,7 @@ export const Login = () => {
                             label="Email"
                             margin="normal"
                             type='email'
+                            placeholder="romuch1986@gmail.com"
                             // name='email'
                             // value={formik.values.email}
                             // onChange={formik.handleChange}
@@ -85,6 +86,7 @@ export const Login = () => {
                             type="password"
                             label="Password"
                             margin="normal"
+                           // placeholder="07121986HJvf"
                             // name='password'
                             // value={formik.values.password}
                             // onChange={formik.handleChange}

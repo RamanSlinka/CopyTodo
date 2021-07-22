@@ -48,6 +48,10 @@ export const authAPI = {
     me() {
         const promise = instance.get<ResponseType<AuthMeType>>('/auth/me')
         return promise;
+    },
+    logout() {
+        const promise = instance.delete<ResponseType>('/auth/login')
+        return promise;
     }
 }
 
