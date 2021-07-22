@@ -40,7 +40,32 @@ export const todolistsAPI = {
     }
 }
 
+export const authAPI = {
+    login(data: LoginType) {
+        const promise = instance.post<ResponseType<{ userId: number }>>('/auth/login', data)
+        return promise;
+    },
+    me() {
+        const promise = instance.get<ResponseType<AuthMeType>>('/auth/me')
+        return promise;
+    }
+}
+
+
 // types
+export type AuthMeType = {
+    id: number
+    email: string
+    login: string
+}
+
+export type LoginType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}
+
 export type TodolistType = {
     id: string
     title: string

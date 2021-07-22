@@ -1,6 +1,10 @@
 import React from 'react'
 import {Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, TextField, Button, Grid} from '@material-ui/core'
 import {useFormik} from "formik";
+import {useDispatch, useSelector} from "react-redux";
+import {loginTC} from "./auth-reducer";
+import {AppRootStateType} from "../../app/store";
+import {Redirect} from "react-router-dom";
 
 
 type FormikErrorType = {
@@ -11,6 +15,11 @@ type FormikErrorType = {
 
 
 export const Login = () => {
+
+    const dispatch = useDispatch()
+
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -24,7 +33,7 @@ export const Login = () => {
             } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
                 errors.email = 'Invalid email address';
             }
-            if(!values.password) {
+            if (!values.password) {
                 errors.password = 'Required';
             } else if (values.password.length < 4) {
                 errors.password = 'Password must be 4 characters or more'
@@ -34,11 +43,15 @@ export const Login = () => {
             return errors;
         },
         onSubmit: values => {
-            alert(JSON.stringify(values));
+            // alert(JSON.stringify(values));
+            dispatch(loginTC(values))
             formik.resetForm();
         },
     })
 
+    if (isLoggedIn) {
+        return <Redirect to={'/'}/>
+    }
 
     return <Grid container justify="center">
         <Grid item xs={4}>
@@ -54,45 +67,45 @@ export const Login = () => {
                     <p>Password: free</p>
                 </FormLabel>
                 <form onSubmit={formik.handleSubmit}>
-                <FormGroup>
-                    <TextField
-                        label="Email"
-                        margin="normal"
-                        type='email'
-                        // name='email'
-                        // value={formik.values.email}
-                        // onChange={formik.handleChange}
-                        // onBlur={formik.handleBlur}
-                        {...formik.getFieldProps('email')}
-                    />
-                    {formik.touched.email && formik.errors.email &&
-                    <div style={{'color': 'red'}}>{formik.errors.email}</div> }
+                    <FormGroup>
+                        <TextField
+                            label="Email"
+                            margin="normal"
+                            type='email'
+                            // name='email'
+                            // value={formik.values.email}
+                            // onChange={formik.handleChange}
+                            // onBlur={formik.handleBlur}
+                            {...formik.getFieldProps('email')}
+                        />
+                        {formik.touched.email && formik.errors.email &&
+                        <div style={{'color': 'red'}}>{formik.errors.email}</div>}
 
-                    <TextField
-                        type="password"
-                        label="Password"
-                        margin="normal"
-                        // name='password'
-                        // value={formik.values.password}
-                        // onChange={formik.handleChange}
-                        // onBlur={formik.handleBlur}
-                        {...formik.getFieldProps('password')}
+                        <TextField
+                            type="password"
+                            label="Password"
+                            margin="normal"
+                            // name='password'
+                            // value={formik.values.password}
+                            // onChange={formik.handleChange}
+                            // onBlur={formik.handleBlur}
+                            {...formik.getFieldProps('password')}
 
-                    />
-                    {formik.touched.password && formik.errors.password &&
-                    <div style={{'color': 'red'}}>{formik.errors.password}</div> }
-                    <FormControlLabel
-                        label={'Remember me'}
-                        control={<Checkbox
-                            {...formik.getFieldProps('rememberMe')}
-                            // name='rememberMe'
-                            //                checked={formik.values.rememberMe}
-                            //                onChange={formik.handleChange}
-                                            />}
-                    />
-                    <Button type={'submit'} variant={'contained'} color={'primary'}>Login</Button>
-                </FormGroup>
-                    </form>
+                        />
+                        {formik.touched.password && formik.errors.password &&
+                        <div style={{'color': 'red'}}>{formik.errors.password}</div>}
+                        <FormControlLabel
+                            label={'Remember me'}
+                            control={<Checkbox
+                                {...formik.getFieldProps('rememberMe')}
+                                // name='rememberMe'
+                                //                checked={formik.values.rememberMe}
+                                //                onChange={formik.handleChange}
+                            />}
+                        />
+                        <Button type={'submit'} variant={'contained'} color={'primary'}>Login</Button>
+                    </FormGroup>
+                </form>
             </FormControl>
         </Grid>
     </Grid>
