@@ -6,7 +6,7 @@ import {handleServerAppError, handleServerNetworkError} from "../../utils/error-
 
 
 const initialState = {
-    isLoggedIn: true                  // ПОМЕНЯТЬ на false !!!  для логинизации
+    isLoggedIn: false
 }
 type InitialStateType = typeof initialState
 
