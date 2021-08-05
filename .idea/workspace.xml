@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04a028fa-cee1-4d4e-b32a-513aa4c7834a" name="Default Changelist" comment="16 lesson - Login, Router, App initializing, Formik">
+    <list default="true" id="04a028fa-cee1-4d4e-b32a-513aa4c7834a" name="Default Changelist" comment="finish commit">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-reducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +36,17 @@
     <property name="ts.external.directory.path" value="H:\CopyTodo\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -51,6 +60,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.deploy" />
       </list>
     </recent_temporary>
   </component>
@@ -68,6 +78,8 @@
       <workItem from="1627035481168" duration="89000" />
       <workItem from="1627043459023" duration="2557000" />
       <workItem from="1627376832635" duration="1517000" />
+      <workItem from="1627647318044" duration="1680000" />
+      <workItem from="1628067691777" duration="4191000" />
     </task>
     <task id="LOCAL-00001" summary="16 lesson - Login, Router, App initializing, Formik">
       <created>1626888233105</created>
@@ -111,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1626979007465</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finish commit">
+      <created>1627647739588</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1627647739588</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="16 lesson - Login, Router, App initializing, Formik" />
-    <option name="LAST_COMMIT_MESSAGE" value="16 lesson - Login, Router, App initializing, Formik" />
+    <MESSAGE value="finish commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish commit" />
   </component>
 </project>

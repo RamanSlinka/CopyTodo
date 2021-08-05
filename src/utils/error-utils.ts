@@ -15,3 +15,5 @@ export const handleServerNetworkError = (error: { message: string }, dispatch: D
     dispatch(setAppErrorAC(error.message ? error.message : 'Some error occurred'))
     dispatch(setAppStatusAC('failed'))
 }
+
+type ErrorUtilsDispatchType = Dispatch<SetAppErrorActionType | SetAppStatusActionType>
