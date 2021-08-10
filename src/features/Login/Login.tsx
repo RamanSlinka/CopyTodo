@@ -72,11 +72,7 @@ export const Login = () => {
                             label="Email"
                             margin="normal"
                             type='email'
-                            placeholder="romuch1986@gmail.com"
-                            // name='email'
-                            // value={formik.values.email}
-                            // onChange={formik.handleChange}
-                            // onBlur={formik.handleBlur}
+
                             {...formik.getFieldProps('email')}
                         />
                         {formik.touched.email && formik.errors.email &&
@@ -86,11 +82,7 @@ export const Login = () => {
                             type="password"
                             label="Password"
                             margin="normal"
-                           // placeholder="07121986HJvf"
-                            // name='password'
-                            // value={formik.values.password}
-                            // onChange={formik.handleChange}
-                            // onBlur={formik.handleBlur}
+
                             {...formik.getFieldProps('password')}
 
                         />
@@ -100,9 +92,7 @@ export const Login = () => {
                             label={'Remember me'}
                             control={<Checkbox
                                 {...formik.getFieldProps('rememberMe')}
-                                // name='rememberMe'
-                                //                checked={formik.values.rememberMe}
-                                //                onChange={formik.handleChange}
+                                             onChange={formik.handleChange}
                             />}
                         />
                         <Button type={'submit'} variant={'contained'} color={'primary'}>Login</Button>

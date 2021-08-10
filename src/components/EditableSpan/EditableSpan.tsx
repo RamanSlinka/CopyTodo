@@ -1,29 +1,49 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useCallback, useState} from 'react';
 import {TextField} from '@material-ui/core';
 
 type EditableSpanPropsType = {
     value: string
     onChange: (newValue: string) => void
+    disabled?: boolean
 }
 
-export const EditableSpan = React.memo(function (props: EditableSpanPropsType) {
-    console.log("EditableSpan called");
-    let [editMode, setEditMode] = useState(false);
-    let [title, setTitle] = useState(props.value);
+export const EditableSpan = React.memo( (props: EditableSpanPropsType) => {
 
-    const activateEditMode = () => {
-        setEditMode(true);
-        setTitle(props.value);
-    }
-    const activateViewMode = () => {
-        setEditMode(false);
-        props.onChange(title);
-    }
-    const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    const {
+        value,
+        onChange,
+        disabled = false
+    } = props;
+
+    let [editMode, setEditMode] = useState<boolean>(false);
+    let [title, setTitle] = useState<string>(value);
+
+    const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
 
+    const activateEditMode = useCallback(() => {
+        setEditMode(true);
+        onChange(value);
+    },[onChange, value])
+
+    const activateViewMode = useCallback(() => {
+        setEditMode(false);
+        onChange(title);
+    },[onChange, title])
+
+    const onPressEnterOffEditMode = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            activateViewMode()
+        }
+    }
+
     return editMode
-        ?    <TextField value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode} />
-        : <span onDoubleClick={activateEditMode}>{props.value}</span>
+        ?    <TextField value={title}
+                        onKeyPress={onPressEnterOffEditMode}
+                        disabled={disabled}
+                        onChange={onChangeTitle}
+                        autoFocus
+                        onBlur={activateViewMode} />
+        : <span onDoubleClick={activateEditMode}>{value}</span>
 });

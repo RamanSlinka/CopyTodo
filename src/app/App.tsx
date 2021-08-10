@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useCallback, useEffect} from 'react'
 import './App.css'
 import {AppBar, Button, Container, IconButton, LinearProgress, Toolbar, Typography} from '@material-ui/core'
 import {Menu} from '@material-ui/icons'
@@ -26,11 +26,9 @@ function App({demo = false}: PropsType) {
 
     useEffect(() => {
         dispatch(initializeAppTC())
-    }, [])
+    }, [dispatch])
 
-    const logoutHandler = () => {
-        dispatch(logoutTC())
-    }
+    const logoutHandler = useCallback(() => {dispatch(logoutTC())}, [dispatch])
 
     if (!isInitialized) {
         return <div
@@ -49,7 +47,7 @@ function App({demo = false}: PropsType) {
                         <Menu/>
                     </IconButton>
                     <Typography variant="h6">
-                        News
+                        TODOLIST
                     </Typography>
 
                     {isLoggetIn && <Button color="inherit"  onClick={logoutHandler}>Logout</Button> }

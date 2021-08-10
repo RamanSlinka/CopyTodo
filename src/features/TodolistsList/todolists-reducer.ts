@@ -3,12 +3,12 @@ import {Dispatch} from 'redux'
 import {RequestStatusType, setAppStatusAC, SetAppStatusActionType} from '../../app/app-reducer'
 import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 import {AppThunkType} from "../../app/store";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+
+
 
 const initialState: Array<TodolistDomainType> = []
 
-export const todolistsReducer = (state: Array<TodolistDomainType> = initialState, action: TodolistsActionsType): Array<TodolistDomainType> => {
+export const todolistsReducer = (state = initialState, action: TodolistsActionsType): Array<TodolistDomainType> => {
     switch (action.type) {
         case 'REMOVE-TODOLIST':
             return state.filter(tl => tl.id != action.id)
@@ -36,14 +36,17 @@ export const changeTodolistTitleAC = (id: string, title: string) => ({
     id,
     title
 } as const)
+
 export const changeTodolistFilterAC = (id: string, filter: FilterValuesType) => ({
     type: 'CHANGE-TODOLIST-FILTER',
     id,
     filter
 } as const)
+
 export const changeTodolistEntityStatusAC = (id: string, status: RequestStatusType) => ({
     type: 'CHANGE-TODOLIST-ENTITY-STATUS', id, status
 } as const)
+
 export const setTodolistsAC = (todolists: Array<TodolistType>) => ({type: 'SET-TODOLISTS', todolists} as const)
 
 // thunks
