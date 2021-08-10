@@ -22,17 +22,15 @@ type PropsType = {
     demo?: boolean
 }
 
-export const Todolist = React.memo(function ({demo = false, ...props}: PropsType) {
+export const Todolist = React.memo( ({demo = false, ...props}: PropsType) => {
     console.log('Todolist called')
 
     const dispatch = useDispatch()
+
     useEffect(() => {
-        if (demo) {
-            return
-        }
-        const thunk = fetchTasksTC(props.todolist.id)
-        dispatch(thunk)
-    }, [])
+        if (demo) return
+        dispatch(fetchTasksTC(props.todolist.id))
+    }, [props.todolist.id, dispatch, demo])
 
     const addTask = useCallback((title: string) => {
         props.addTask(title, props.todolist.id)

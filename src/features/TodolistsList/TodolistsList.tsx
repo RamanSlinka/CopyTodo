@@ -34,47 +34,55 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
         }
         const thunk = fetchTodolistsTC()
         dispatch(thunk)
-    }, [])
+    }, [dispatch, demo, isLoggedIn])
 
     const removeTask = useCallback(function (id: string, todolistId: string) {
+        if(demo) return;
         const thunk = removeTaskTC(id, todolistId)
         dispatch(thunk)
-    }, [])
+    }, [dispatch, demo])
 
     const addTask = useCallback(function (title: string, todolistId: string) {
+        if(demo) return;
         const thunk = addTaskTC(title, todolistId)
         dispatch(thunk)
-    }, [])
+    }, [dispatch, demo])
 
     const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
+        if(demo) return;
         const thunk = updateTaskTC(id, {status}, todolistId)
         dispatch(thunk)
-    }, [])
+    }, [dispatch, demo])
 
     const changeTaskTitle = useCallback(function (id: string, newTitle: string, todolistId: string) {
+        if(demo) return;
         const thunk = updateTaskTC(id, {title: newTitle}, todolistId)
         dispatch(thunk)
-    }, [])
+    }, [dispatch, demo])
 
     const changeFilter = useCallback(function (value: FilterValuesType, todolistId: string) {
+        if(demo) return;
         const action = changeTodolistFilterAC(todolistId, value)
         dispatch(action)
-    }, [])
+    }, [dispatch, demo])
 
     const removeTodolist = useCallback(function (id: string) {
+        if(demo) return;
         const thunk = removeTodolistTC(id)
         dispatch(thunk)
-    }, [])
+    }, [dispatch, demo])
 
     const changeTodolistTitle = useCallback(function (id: string, title: string) {
+        if(demo) return;
         const thunk = changeTodolistTitleTC(id, title)
         dispatch(thunk)
-    }, [])
+    }, [dispatch, demo])
 
     const addTodolist = useCallback((title: string) => {
+       if (demo) return;
         const thunk = addTodolistTC(title)
         dispatch(thunk)
-    }, [dispatch])
+    }, [dispatch, demo])
 
 
     if (!isLoggedIn){
