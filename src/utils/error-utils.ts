@@ -2,7 +2,7 @@ import {setAppErrorAC, SetAppErrorActionType, setAppStatusAC, SetAppStatusAction
 import {ResponseType} from '../api/todolists-api'
 import {Dispatch} from 'redux'
 
-export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatch<SetAppErrorActionType | SetAppStatusActionType>) => {
+export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: ErrorUtilsDispatchType) => {
     if (data.messages.length) {
         dispatch(setAppErrorAC(data.messages[0]))
     } else {
@@ -11,8 +11,8 @@ export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatc
     dispatch(setAppStatusAC('failed'))
 }
 
-export const handleServerNetworkError = (error: { message: string }, dispatch: Dispatch<SetAppErrorActionType | SetAppStatusActionType>) => {
-    dispatch(setAppErrorAC(error.message ? error.message : 'Some error occurred'))
+export const handleServerNetworkError = (error: { message: string }, dispatch: ErrorUtilsDispatchType) => {
+    dispatch(setAppErrorAC(error.message ))
     dispatch(setAppStatusAC('failed'))
 }
 

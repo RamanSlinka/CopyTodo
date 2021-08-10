@@ -10,7 +10,7 @@ const initialState = {
 }
 type InitialStateType = typeof initialState
 
-export const authReducer = (state: InitialStateType = initialState, action: ActionsType): InitialStateType => {
+export const authReducer = (state: InitialStateType = initialState, action: LoginActionsType): InitialStateType => {
     switch (action.type) {
         case 'login/SET-IS-LOGGED-IN':
             return {...state, isLoggedIn: action.value}
@@ -23,9 +23,9 @@ export const setIsLoggedInAC = (value: boolean) =>
     ({type: 'login/SET-IS-LOGGED-IN', value} as const)
 
 // thunks
-export const loginTC = (data: LoginType) => (dispatch: Dispatch<ActionsType>) => {
+export const loginTC = (values: LoginType) => (dispatch: Dispatch<LoginActionsType>) => {
     dispatch(setAppStatusAC('loading'))
-    authAPI.login(data)
+    authAPI.login(values)
         .then((res) => {
         if(res.data.resultCode === 0) {
             dispatch(setIsLoggedInAC(true))
@@ -39,7 +39,7 @@ export const loginTC = (data: LoginType) => (dispatch: Dispatch<ActionsType>) =>
     })
 }
 
-export const logoutTC = () => (dispatch: Dispatch<ActionsType>) => {
+export const logoutTC = () => (dispatch: Dispatch<LoginActionsType>) => {
     dispatch(setAppStatusAC('loading'))
     authAPI.logout()
         .then(res => {
@@ -58,4 +58,4 @@ export const logoutTC = () => (dispatch: Dispatch<ActionsType>) => {
 
 
 // types
-type ActionsType = ReturnType<typeof setIsLoggedInAC> | SetAppStatusActionType | SetAppErrorActionType
+export type LoginActionsType = ReturnType<typeof setIsLoggedInAC> | SetAppStatusActionType | SetAppErrorActionType

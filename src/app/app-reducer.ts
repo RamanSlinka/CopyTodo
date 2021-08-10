@@ -58,7 +58,7 @@ export type SetAppErrorActionType = ReturnType<typeof setAppErrorAC>
 export type SetAppStatusActionType = ReturnType<typeof setAppStatusAC>
 export type SetAppIsInitializedActionType = ReturnType<typeof setIsInitializedAC>
 
-type ActionsType =
+export type ActionsType =
     | SetAppErrorActionType
     | SetAppStatusActionType
     | SetAppIsInitializedActionType
