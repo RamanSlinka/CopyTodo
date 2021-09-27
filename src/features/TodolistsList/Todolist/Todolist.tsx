@@ -23,7 +23,7 @@ type PropsType = {
 }
 
 export const Todolist = React.memo( ({demo = false, ...props}: PropsType) => {
-    console.log('Todolist called')
+
 
     const dispatch = useDispatch()
 
