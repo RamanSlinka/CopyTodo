@@ -38,12 +38,10 @@ export const Login = () => {
             } else if (values.password.length < 4) {
                 errors.password = 'Password must be 4 characters or more'
             }
-
-
             return errors;
         },
         onSubmit: values => {
-            // alert(JSON.stringify(values));
+
             dispatch(loginTC(values))
             formik.resetForm();
         },
@@ -53,8 +51,13 @@ export const Login = () => {
         return <Redirect to={'/'}/>
     }
 
-    return <Grid container justify="center">
-        <Grid item xs={4}>
+    return (
+    <Grid container justify="center"
+                 className="loginPage"
+          style={{maxWidth: "650px"}}
+    >
+        <Grid item xs={7}
+              className="login">
             <FormControl>
                 <FormLabel>
                     <p>To log in get registered
@@ -92,7 +95,7 @@ export const Login = () => {
                             label={'Remember me'}
                             control={<Checkbox
                                 {...formik.getFieldProps('rememberMe')}
-                                             onChange={formik.handleChange}
+                                onChange={formik.handleChange}
                             />}
                         />
                         <Button type={'submit'} variant={'contained'} color={'primary'}>Login</Button>
@@ -101,4 +104,5 @@ export const Login = () => {
             </FormControl>
         </Grid>
     </Grid>
+    )
 }

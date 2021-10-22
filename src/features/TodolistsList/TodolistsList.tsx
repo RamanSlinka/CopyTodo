@@ -89,7 +89,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
         return <Redirect to={'/Login'}/>
     }
 
-    return <>
+    return <div className= "todolistPage">
         <Grid container style={{padding: '20px'}}>
             <AddItemForm addItem={addTodolist}/>
         </Grid>
@@ -117,5 +117,5 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
                 })
             }
         </Grid>
-    </>
+    </div>
 }

@@ -1,26 +1,42 @@
-/*
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
 .App {
-  padding: 30px;
-  display: flex;
+    width: 100%;
+    max-height: 200%;
+    background: #9b5f5f;
 }
 
-.App > div {
-  margin-right: 50px;
+.loginPage {
+    position: absolute;
+    margin-top: 90px;
+    width: 300px;
+    z-index: 12;
 }
 
-.error {
-  border: red 1px solid;
+.login {
+
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 20px;
+    padding: 20px;
+    background: #f6f4f4;
 }
 
-.error-message {
-  color: red;
+.particles {
+    position: absolute;
+    top: 63px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.3;
+    z-index: 1;
 }
 
-.active-filter {
-  background-color: aquamarine;
-}
+.todolistPage {
+    position: absolute;
+    z-index: 300;
 
-.is-done {
-  opacity: 0.5;
 }
-*/

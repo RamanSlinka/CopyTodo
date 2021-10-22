@@ -11,10 +11,14 @@ import {Redirect, Route, Switch} from 'react-router-dom'
 import {Login} from '../features/Login/Login'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import {logoutTC} from "../features/Login/auth-reducer";
+import Particles from "react-tsparticles";
+import {IParticlesProps} from "react-tsparticles/ts3.4";
 
 type PropsType = {
     demo?: boolean
 }
+
+type ParticlesTypes = IParticlesProps
 
 function App({demo = false}: PropsType) {
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
@@ -28,7 +32,9 @@ function App({demo = false}: PropsType) {
         dispatch(initializeAppTC())
     }, [dispatch])
 
-    const logoutHandler = useCallback(() => {dispatch(logoutTC())}, [dispatch])
+    const logoutHandler = useCallback(() => {
+        dispatch(logoutTC())
+    }, [dispatch])
 
     if (!isInitialized) {
         return <div
@@ -37,11 +43,93 @@ function App({demo = false}: PropsType) {
         </div>
     }
 
+    const options: ParticlesTypes = {
+        background: {
+            color: {
+                value: "#0d47a1",
+            },
+        },
+        fpsLimit: 150,
+        interactivity: {
+            detectsOn: "canvas",
+            events: {
+                onClick: {
+                    enable: true,
+                    mode: "push",
+                },
+                onHover: {
+                    enable: true,
+                    mode: "repulse",
+                },
+                resize: true,
+            },
+            modes: {
+                bubble: {
+                    distance: 100,
+                    duration: 1,
+                    opacity: 1,
+                    size: 60,
+                },
+                push: {
+                    quantity: 8,
+                },
+                repulse: {
+                    distance: 200,
+                    duration: 0.4,
+                },
+            },
+        },
+        particles: {
+            color: {
+                value: "#ffffff",
+            },
+            links: {
+                color: "#ffffff",
+                distance: 150,
+                enable: true,
+                opacity: 0.5,
+                width: 1,
+            },
+            collisions: {
+                enable: true,
+            },
+            move: {
+                direction: "none",
+                enable: true,
+                outMode: "bounce",
+                random: false,
+                speed: 2,
+                straight: false,
+            },
+            number: {
+                density: {
+                    enable: true,
+                    value_area: 1000,
+                },
+                value: 60,
+            },
+            opacity: {
+                value: 0.5,
+            },
+            shape: {
+                type: "circle",
+            },
+            size: {
+                random: true,
+                value: 5,
+            },
+        },
+        detectRetina: true,
+    }
+
 
     return (
         <div className="App">
+
+
             <ErrorSnackbar/>
             <AppBar position="static">
+
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
@@ -50,11 +138,17 @@ function App({demo = false}: PropsType) {
                         TODOLIST
                     </Typography>
 
-                    {isLoggetIn && <Button color="inherit"  onClick={logoutHandler}>Logout</Button> }
-
+                    {isLoggetIn && <Button color="inherit" onClick={logoutHandler}>Logout</Button>}
 
 
                 </Toolbar>
+
+                <Particles
+                    params={options}
+                    className="particles "
+
+                />
+
                 {status === 'loading' && <LinearProgress/>}
             </AppBar>
             <Container fixed>
