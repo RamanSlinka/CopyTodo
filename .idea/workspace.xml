@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04a028fa-cee1-4d4e-b32a-513aa4c7834a" name="Default Changelist" comment="refactors">
+    <list default="true" id="04a028fa-cee1-4d4e-b32a-513aa4c7834a" name="Default Changelist" comment="added react-tsparticles">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/features/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/TodolistsList/TodolistsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/TodolistsList/TodolistsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +113,8 @@
       <workItem from="1634726630663" duration="1924000" />
       <workItem from="1634827525691" duration="28000" />
       <workItem from="1634910547772" duration="5882000" />
-      <workItem from="1634920279172" duration="5053000" />
+      <workItem from="1634920279172" duration="6119000" />
+      <workItem from="1634988353097" duration="1412000" />
     </task>
     <task id="LOCAL-00001" summary="16 lesson - Login, Router, App initializing, Formik">
       <created>1626888233105</created>
@@ -217,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632763080671</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added react-tsparticles">
+      <created>1634925698426</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1634925698426</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +246,7 @@
     <MESSAGE value="refactors thunks&#10;thunk types" />
     <MESSAGE value="refactors thunks, thunk types" />
     <MESSAGE value="refactors" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactors" />
+    <MESSAGE value="added react-tsparticles" />
+    <option name="LAST_COMMIT_MESSAGE" value="added react-tsparticles" />
   </component>
 </project>

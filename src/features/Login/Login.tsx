@@ -54,20 +54,20 @@ export const Login = () => {
     return (
     <Grid container justify="center"
                  className="loginPage"
-          style={{maxWidth: "650px"}}
+          style={{maxWidth: "500px"}}
     >
         <Grid item xs={7}
               className="login">
             <FormControl>
-                <FormLabel>
-                    <p>To log in get registered
+                <FormLabel className="loginText">
+                    <p className="loginText">To log in get registered
                         <a href={'https://social-network.samuraijs.com/'}
-                           target={'_blank'}>here
+                           target={'_blank'}> here
                         </a>
                     </p>
-                    <p>or use common test account credentials:</p>
-                    <p>Email: free@samuraijs.com</p>
-                    <p>Password: free</p>
+                    <p className="loginText">or use common test account credentials:</p>
+                    <p>Email: <span className="testAcc">free@samuraijs.com</span></p>
+                    <p>Password: <span className="testAcc">free</span></p>
                 </FormLabel>
                 <form onSubmit={formik.handleSubmit}>
                     <FormGroup>

@@ -12,7 +12,7 @@
 .loginPage {
     position: absolute;
     margin-top: 90px;
-    width: 300px;
+    max-width: 200px;
     z-index: 12;
 }
 
@@ -22,7 +22,14 @@
     border-radius: 5px;
     margin: 20px;
     padding: 20px;
-    background: #f6f4f4;
+    background: #ffffff;
+}
+.loginText{
+    font-size: 12px;
+}
+.testAcc{
+    color: #274080;
+    font-size: 17px;
 }
 
 .particles {
