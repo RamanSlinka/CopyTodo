@@ -65,7 +65,7 @@ function App({demo = false}: PropsType) {
             },
             modes: {
                 bubble: {
-                    distance: 100,
+                    distance: 200,
                     duration: 1,
                     opacity: 1,
                     size: 60,
@@ -87,14 +87,14 @@ function App({demo = false}: PropsType) {
                 color: "#ffffff",
                 distance: 150,
                 enable: true,
-                opacity: 0.5,
+                opacity: 0.4,
                 width: 1,
             },
             collisions: {
                 enable: true,
             },
             move: {
-                direction: "none",
+                direction: "walker",
                 enable: true,
                 outMode: "bounce",
                 random: false,
@@ -125,12 +125,11 @@ function App({demo = false}: PropsType) {
 
     return (
         <div className="App">
-
-
             <ErrorSnackbar/>
-            <AppBar position="static">
+            <AppBar   position="static"
+                      className="header">
 
-                <Toolbar>
+                <Toolbar  >
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
                     </IconButton>
@@ -144,8 +143,10 @@ function App({demo = false}: PropsType) {
                 </Toolbar>
 
                 <Particles
+                    className="tsparticles-canvas-el"
+                    style={{height: "300px"}}
                     params={options}
-                    className="particles "
+
 
                 />
 
